@@ -9,3 +9,23 @@
 - 支持日志分组
 - 支持路由过虑日志
 - 支持域名是否启动日志监听
+
+## 使用
+### 1. 安装
+```
+npm install js-log-sdk
+```
+### 2. 引入
+```
+import { init, WebLog } from "js-log-sdk";
+```
+### 3. 基本使用
+```
+init({
+  integrations: [
+    new WebLog.Replay({
+      reportTime: 10 * 1000
+    })
+  ]
+})
+```

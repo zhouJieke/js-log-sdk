@@ -1,6 +1,7 @@
 import * as rrweb from 'rrweb';
 import {uuid} from "./Builder";
 import Http from "./Http";
+import {ReplayConfig} from "./Interface/Replay.ts";
 
 
 interface LogConfig {
@@ -9,7 +10,7 @@ interface LogConfig {
 
 
 function init(config: LogConfig) {
-  config.integrations.forEach((item) => {
+  config.integrations.forEach((item: Replay) => {
     item.run()
   })
 }
@@ -21,32 +22,47 @@ function init(config: LogConfig) {
 
 
 class Replay extends Http{
-  private events: any[]
-  private uuid: string
-  constructor() {
+  private events: any = []
+  private uuid: string = uuid()
+  private readonly config: ReplayConfig
+  private
+  constructor(config: ReplayConfig) {
     super()
-    this.events = [];
-    this.uuid = uuid()
-    const _this = this
+    // 加载配置
+    this.config = config
+    // 启动监听器
+    this.startMonitor()
+  }
+
+  private startMonitor() {
     rrweb.record({
-      emit(event) {
-        _this.events.push(event)
-      },
+      emit: (event) => {
+        this.events.push(event)
+      }
     });
   }
+
+
+  private static reset() {
+    this.events = [];
+    this.uuid = uuid()
+  }
+
+
 
   public run() {
     setInterval(() => {
       this.reportLogs();
-      this.events = [];
-      this.uuid = uuid()
-    }, 1000 * 60)
+      this.reset()
+    }, this.config.reportTime || 1000 * 10)
   }
 
-  public reportLogs() {
+  public static reportLogs() {
+    // 如果没有日志，则不进行上报
+    if (this.events.length <= 0) return;
+    console.log(this.uuid, this.events)
     this.httpReportLog(this.uuid, this.events)
   }
-
 
 }
 
