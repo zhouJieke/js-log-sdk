@@ -1,6 +1,8 @@
 import Replay from './Replay.ts'
+import {App} from "@vue/runtime-core";
 
 interface LogConfig {
+  app: App,
   integrations: any[]
 }
 

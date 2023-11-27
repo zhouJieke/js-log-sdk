@@ -3,14 +3,16 @@ import {uuid} from "./Builder";
 import {Activate, ReplayConfig} from "./Interface/Replay.ts";
 import Http from "./Http.ts";
 
+
+// 视频监控插件
 class Replay extends Http implements Activate{
   private events: any = []
-  private uuid: string = uuid()
+  private eventId: string = uuid()
   private readonly config: ReplayConfig
-  constructor(config: ReplayConfig) {
+  constructor(config?: ReplayConfig) {
     super()
     // 加载配置
-    this.config = config
+    this.config = (config as ReplayConfig) || {}
     // 启动监听器
     this.startMonitor()
   }
@@ -23,7 +25,7 @@ class Replay extends Http implements Activate{
   }
   private reset() {
     this.events = [];
-    this.uuid = uuid()
+    this.eventId = uuid()
   }
   public run() {
     setInterval(() => {
@@ -34,8 +36,7 @@ class Replay extends Http implements Activate{
   public reportLogs() {
     // 如果没有日志，则不进行上报
     if (this.events.length <= 0) return;
-    console.log(this.uuid, this.events)
-    this.httpReportLog(this.uuid, this.events)
+    this.httpReportLog(this.eventId, this.events)
   }
 }
 
