@@ -9,10 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "base64-js": "^1.5.1",
+    "pako": "^2.1.0",
     "rrweb": "^2.0.0-alpha.4",
     "vue": "^3.3.8"
   },
   "devDependencies": {
+    "@types/pako": "^2.0.3",
     "@vitejs/plugin-vue": "^4.5.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",

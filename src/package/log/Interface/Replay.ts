@@ -1,3 +1,4 @@
+import Http from "../Http.ts";
 
 
 export interface ReplayConfig {
@@ -5,7 +6,7 @@ export interface ReplayConfig {
 }
 
 
-export abstract class Activate {
+export abstract class Activate extends Http{
   abstract run(): void;
   abstract reportLogs(): void
 }
