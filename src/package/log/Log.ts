@@ -1,7 +1,7 @@
 import * as rrweb from 'rrweb';
 import {uuid} from "./Builder";
 import Http from "./Http";
-import {ReplayConfig} from "./Interface/Replay.ts";
+import {Activate, ReplayConfig} from "./Interface/Replay.ts";
 
 
 interface LogConfig {
@@ -21,7 +21,7 @@ function init(config: LogConfig) {
 
 
 
-class Replay extends Http{
+class Replay extends Activate, Http {
   private events: any = []
   private uuid: string = uuid()
   private readonly config: ReplayConfig
@@ -57,7 +57,7 @@ class Replay extends Http{
     }, this.config.reportTime || 1000 * 10)
   }
 
-  public static reportLogs() {
+  public reportLogs() {
     // 如果没有日志，则不进行上报
     if (this.events.length <= 0) return;
     console.log(this.uuid, this.events)
