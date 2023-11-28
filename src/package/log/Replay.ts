@@ -18,6 +18,7 @@ class Replay extends Http implements Activate{
   }
   private startMonitor() {
     rrweb.record({
+      slimDOMOptions: 'all',
       emit: (event) => {
         this.events.push(event)
       }
@@ -31,7 +32,7 @@ class Replay extends Http implements Activate{
     setInterval(() => {
       this.reportLogs();
       this.reset()
-    }, this.config.reportTime || 1000 * 10)
+    }, this.config.reportTime || 1000 * 30)
   }
   public reportLogs() {
     // 如果没有日志，则不进行上报
