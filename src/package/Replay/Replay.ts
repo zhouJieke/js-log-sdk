@@ -1,7 +1,7 @@
 import * as rrweb from 'rrweb';
-import {uuid} from "./Builder";
-import {Activate, ReplayConfig} from "./Interface/Replay.ts";
-import Http from "./Http.ts";
+import {uuid} from "../Builder.ts";
+import {Activate, ReplayConfig} from "../Interface/Replay.ts";
+import Http from "../Http/Http.ts";
 
 
 // 视频监控插件

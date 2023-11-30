@@ -1,4 +1,4 @@
-import Http from "../Http.ts";
+import Http from "../Http/Http.ts";
 
 
 export interface ReplayConfig {

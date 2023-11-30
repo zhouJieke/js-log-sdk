@@ -1,9 +1,13 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <router-view></router-view>
+  <div>
+    313131
+  </div>
 </template>
 
 <style scoped>
+
 </style>
