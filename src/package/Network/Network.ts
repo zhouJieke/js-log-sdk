@@ -1,12 +1,22 @@
-
-
+import workerString from './NetworkServiceWorker.ts'
 export class Network {
   constructor() {
 
   }
 
+
+  private startNetworkMonitoring() {
+
+  }
+
+
+
   public run() {
-    console.log('开启网络性能监听')
+    // Enable network performance monitoring
+      this.startNetworkMonitoring()
+
+
+
   }
 
 }

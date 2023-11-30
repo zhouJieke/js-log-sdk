@@ -7,8 +7,6 @@ class Activation extends Router {
   public init(config: LogConfig) {
     super.initConfig(config)
     super.createRouterProbe(config.router)
-
-
     config.integrations.forEach((item: Replay) => {
       item.run()
     })

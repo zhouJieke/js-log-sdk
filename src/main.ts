@@ -6,7 +6,8 @@ import router from "./router";
 import {Network} from "./package/Network/Network.ts";
 const app = createApp(App)
 
-// 注入日志SDK
+
+
 init({
   app: app,
   integrations: [
@@ -16,5 +17,8 @@ init({
   router
 })
 
+
 app.use(router)
 app.mount('#app')
+
+
